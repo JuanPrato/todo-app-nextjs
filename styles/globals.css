@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
 html,
 body {
   padding: 0;
@@ -13,4 +15,23 @@ a {
 
 * {
   box-sizing: border-box;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  --bs-primary: #150050;
+  --bs-secondary: #3F0071;
+  --bs-secondary-info: #610094;
+  --bs-dark: #0e0e0e;
+  --bs-dark-ligth: #1a1a1a;
+}
+
+.btn-primary {
+  background-color: var(--bs-secondary-info);
+  border: none;
+}
+
+.card {
+  background-color: var(--bs-dark-ligth);
 }
