@@ -18,15 +18,19 @@ const Tasks = () => {
         console.log(selectedTask);
     }
 
+    const updateTasks = (newTasks: TaskType[]) => {
+        useTasks(newTasks);
+        if (selectedTask) setSelectedTask(newTasks.find((task:TaskType) => task.id === (selectedTask as TaskType).id));
+    }
+
     useEffect(() => {
         getTasks().then((tasks) => {
             store.dispatch(tasks);
-            useTasks(store.getState().tasks.tasks);
+            updateTasks(store.getState().tasks.tasks);
         });
         store.subscribe(() => {
             const storeTasks = store.getState().tasks.tasks;
-            useTasks(storeTasks);
-            setSelectedTask(storeTasks.find((task:TaskType) => task.id === selectedTask!.id));
+            updateTasks(storeTasks);
         });
     }, []);
 
