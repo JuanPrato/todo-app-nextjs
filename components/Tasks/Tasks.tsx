@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getTasks } from "../../redux/actions/tasks";
 import { store } from "../../redux/store";
 import styles from "../../styles/Tasks.module.css";
@@ -8,7 +8,7 @@ import TaskDetailModal from "./TaskDetailModal";
 
 const Tasks = () => {
 
-    const [tasks, useTasks]: [TaskType[], any] = useState([]);
+    const [tasks, setTasks]: [TaskType[], any] = useState([]);
     const [selectedTask, setSelectedTask] : [TaskType | undefined, any] = useState(undefined);
     const [show, setShow] = useState(false);
 
@@ -18,8 +18,8 @@ const Tasks = () => {
         console.log(selectedTask);
     }
 
-    const updateTasks = (newTasks: TaskType[]) => {
-        useTasks(newTasks);
+    function updateTasks (newTasks: TaskType[]) {
+        setTasks(newTasks);
         if (selectedTask) setSelectedTask(newTasks.find((task:TaskType) => task.id === (selectedTask as TaskType).id));
     }
 
@@ -32,7 +32,7 @@ const Tasks = () => {
             const storeTasks = store.getState().tasks.tasks;
             updateTasks(storeTasks);
         });
-    }, []);
+    });
 
     return (
         <div className={styles.body + " mx-auto mt-4"}>
