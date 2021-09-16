@@ -32,7 +32,7 @@ const Tasks = () => {
             const storeTasks = store.getState().tasks.tasks;
             updateTasks(storeTasks);
         });
-    });
+    }, []);
 
     return (
         <div className={styles.body + " mx-auto mt-4"}>
